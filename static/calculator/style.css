@@ -1,0 +1,243 @@
+:root {
+  --bg-color: #000;
+  --text-color: #fff;
+  --panel-bg: rgba(0, 0, 0, 0.7);
+}
+
+body.light {
+  --bg-color: #fff;
+  --text-color: #000;
+  --panel-bg: rgba(255, 255, 255, 0.8);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-image: url('/static/calculator/background_new.jpg');
+  background-size: cover;
+  background-position: center;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  z-index: 1000;
+}
+
+.navbar a, .navbar label {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.navbar-buttons {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.navbar-buttons button {
+  margin-left: 8px;
+  padding: 6px 10px;
+  font-size: 13px;
+  background-color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.navbar-buttons input[type="checkbox"] {
+  margin-left: 10px;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.hamburger div {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 3px 0;
+}
+
+.navbar-menu {
+  display: flex;
+}
+
+.navbar-toggle {
+  display: none;
+}
+
+/* Mobile Nav Toggle */
+@media (max-width: 768px) {
+  .navbar-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 55px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.95);
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  .navbar-toggle:checked + .hamburger + .navbar-menu {
+    display: flex;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
+
+.header-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 80px 20px 20px;
+  padding: 15px;
+  background-color: var(--panel-bg);
+  border-radius: 10px;
+}
+
+.header-inputs div {
+  flex: 1 1 200px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.main-content {
+  padding: 20px;
+}
+
+.split-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Form and Output Sections */
+.form-section, .output-section {
+  flex: 1 1 360px;
+  background-color: var(--panel-bg);
+  padding: 10px 12px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Adjust layout on smaller screens */
+@media (max-width: 768px) {
+  .form-section, .output-section {
+    flex: 1 1 100%;
+    padding: 8px;
+  }
+
+  .form-table label {
+    min-width: 120px;
+  }
+}
+
+/* Headings */
+h2 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Form Table */
+.form-table {
+  width: 100%;
+}
+
+/* Label styling (applies to both input and output sections) */
+.form-table label {
+  font-weight: bold;
+  display: inline-block;
+  min-width: auto;       /* ✅ Remove fixed width */
+  margin-right: 4px;     /* ✅ Reduced from 6px */
+  white-space: nowrap;   /* ✅ Prevent wrapping for compact layout */
+  text-align: right;
+}
+
+/* Table cells (tighten spacing) */
+.form-table td {
+  padding: 2px 4px;      /* ✅ Reduced padding */
+  vertical-align: middle;
+}
+
+
+/* Inputs */
+input[type="text"], input[type="number"], input[type="date"] {
+  width: 110px;           /* ✅ Was 130px – enough for 6 decimal places */
+  padding: 3px 5px;
+  font-size: 13px;
+}
+
+/* Output Values */
+#resultBox,
+#potassiumBox,
+.output-section div[id^="result"] {
+  font-size: 13px;
+  padding: 3px 5px;
+  min-width: 110px;       /* ✅ Reduced from 120px */
+  display: inline-block;
+}
+
+
+/* Print View */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 1cm;
+  }
+
+  html, body {
+    width: 210mm;
+    height: 297mm;
+    font-size: 11px;
+    overflow: hidden;
+    background: white !important;
+    color: black !important;
+  }
+
+  .navbar, .navbar-buttons, .hamburger {
+    display: none !important;
+  }
+
+  .header-inputs,
+  .form-section,
+  .output-section {
+    background: none !important;
+    box-shadow: none !important;
+    color: black !important;
+    page-break-inside: avoid;
+  }
+
+  .main-content, .split-container {
+    flex-direction: row;
+    gap: 5px;
+    width: 100%;
+    padding: 0;
+  }
+
+  .form-section, .output-section {
+    width: 48% !important;
+    padding: 6px;
+  }
+}

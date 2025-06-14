@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome - TPN Calculator</title>
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-image: url("{% static 'calculator/background_new.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            color: white;
+            display: flex;
+            flex-direction: column;
+        }
+
+        nav {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 15px 30px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .developer {
+            font-size: 0.9rem;
+            font-weight: normal;
+            color: #cccccc;
+        }
+
+        .overlay {
+            flex: 1;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 4px black;
+        }
+
+        .doctor-profile {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            gap: 30px;
+            max-width: 800px;
+        }
+
+        .doctor-photo img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border: 4px solid #fff;
+        }
+
+        .doctor-bio {
+            text-align: left;
+        }
+
+        .doctor-bio h3 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .doctor-bio p {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #f0f0f0;
+        }
+
+        button {
+            margin-top: 40px;
+            padding: 16px 32px;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #ffd700, #ffa500);
+            color: black;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        @media (max-width: 600px) {
+            h2 {
+                font-size: 2rem;
+            }
+
+            .doctor-profile {
+                flex-direction: column;
+            }
+
+            .doctor-bio {
+                text-align: center;
+            }
+
+            button {
+                width: 90%;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <span>TPN Calculator</span>
+        <span class="developer">Developed by Ashutosh</span>
+    </nav>
+
+    <div class="overlay">
+        <h2>Welcome to the TPN Calculator</h2>
+
+        <div class="doctor-profile">
+            <div class="doctor-photo">
+                <img src="{% static 'calculator/doctor_photo.jpg' %}" alt="Doctor Photo">
+            </div>
+            <div class="doctor-bio">
+                <h3>Dr. Prakash , MD</h3>
+                <p>MBBS, MD Pediatrics (PGIMER, Chandigarh, India)<br>
+                   DM Neonatology (BPKIHS, Dharan, Nepal)<br>
+                   Total Parenteral Nutrition Calculator<br>
+                   For pediatricians, designed by a pediatrician.<br>
+                   Feedback: pksoni4u@gmail.com</p>
+            </div>
+        </div>
+
+        <form action="/calculate/">
+            <button type="submit">Start Calculating</button>
+        </form>
+    </div>
+</body>
+</html>
