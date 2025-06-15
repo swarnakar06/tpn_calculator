@@ -21,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-92d3*ujy!ts3f9^j5t)3@a_ub5g)a^ak65k19u3x6f(ldd27h7'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['tpn-calculator.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['tpn-calculator.onrender.com']
 
 
 
