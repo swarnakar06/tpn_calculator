@@ -93,7 +93,7 @@ def calculate_ratio(request):
                 outputs['result13'] = round(outputs['result04'] * O - outputs['result11'], 4)
 
             # Output 14: Final Dextrose Concentration
-            if 'result12' in outputs and 'result13' in outputs and outputs['result04'] != 0 and N is not None:
+            if 'result12' in outputs and 'result04' in outputs and outputs['result04'] != 0 and N is not None:
                 outputs['result14'] = round(100 * outputs['result12'] / (outputs['result04'] + N), 4)
 
             # Output 15: Dextrose Concentration for Calculation
@@ -129,7 +129,7 @@ def calculate_ratio(request):
                 outputs['result22'] = round(B * C * 60 * 24 / 1000, 4)
             
              # Output 23:calorie:nitrogen ratio
-            if 'result20' in outputs and 'result21' in outputs and 'result22' in outputs:
+            if 'result20' in outputs and 'result21' in outputs and 'result22' in outputs and outputs['result20'] != 0:
                 outputs['result23'] = round((outputs['result22'] * 3.4 + outputs['result21'] * 9) * 6.25 / outputs['result20'], 4)
 
             

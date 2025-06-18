@@ -9,14 +9,17 @@
 </head>
 <body>
   <div class="navbar">
+    <!--
     <input type="checkbox" id="nav-toggle" class="navbar-toggle" />
     <label for="nav-toggle" class="hamburger">
       <div></div><div></div><div></div>
+      -->
+
     </label>
 
-    
+    <div><a href="/">🏠 Home</a></div>
     <div class="navbar-buttons navbar-menu">
-      <div><a href="/">🏠 Home</a></div>
+      
       <button onclick="window.print()">🖶</button>
       <button onclick="printResult()">Only</button>
       <button onclick="downloadPDF()">📄 PDF</button>
@@ -36,28 +39,32 @@
       <div class="form-section">
         <h2>Enter Required Values</h2>
         <form id="calcForm">
-          {% csrf_token %}
-          <table class="form-table">
-            <tr><td><label>Amino Acids:</label></td><td><input type="text" name="amino_acids" /></td></tr>
-            <tr><td><label>Lipids:</label></td><td><input type="text" name="Lipids" /></td></tr>
-            <tr><td><label>Dextrose:</label></td><td><input type="text" name="dextrose" /></td></tr>
-            <tr><td><label>Sodium:</label></td><td><input type="text" name="Sodium" /></td></tr>
-            <tr><td><label>Potassium:</label></td><td><input type="text" name="Potassium" /></td></tr>
-            <tr><td><label>Calcium:</label></td><td><input type="text" name="Calcium" /></td></tr>
-            <tr><td><label>Body Weight:</label></td><td><input type="text" name="body_weight" /></td></tr>
-            <tr><td><label>Fluid intake:</label></td><td><input type="text" name="Fluid_intake" /></td></tr>
-            <tr><td><label>Feeds:</label></td><td><input type="text" name="Feeds" /></td></tr>
-            <tr><td><label>Drugs:</label></td><td><input type="text" name="drugs" /></td></tr>
-            <tr><td><label>Other losses:</label></td><td><input type="text" name="Other_losses_Sampling" /></td></tr>
-            <tr><td><label>Spillage losses:</label></td><td><input type="text" name="add_as_spillage_losses" /></td></tr>
-            <tr><td><label>Wastage factor:</label></td><td><input type="text" name="Wastage_factor" /></td></tr>
-            <tr><td><label>Lower Conc. of Dextrose:</label></td><td><input type="text" name="Lower_Conc_of_Dextrose" /></td></tr>
-            <tr><td><label>Higher Conc. of Dextrose:</label></td><td><input type="text" name="Higher_Conc_of_Dextrose" /></td></tr>
-            <tr><td><label>% of Aminoacids:</label></td><td><input type="text" name="Percentage_Aminoacids" /></td></tr>
-            <tr><td><label>% of Lipids:</label></td><td><input type="text" name="percentage_lipids" /></td></tr>
-          </table>
-        </form>
+        {% csrf_token %}
+        <table class="form-table">
+          <tr><td><label>Amino Acids:</label></td><td><input type="number" step="any" inputmode="decimal" name="amino_acids" /></td></tr>
+          <tr><td><label>Lipids:</label></td><td><input type="number" step="any" inputmode="decimal" name="Lipids" /></td></tr>
+          <tr><td><label>Dextrose:</label></td><td><input type="number" step="any" inputmode="decimal" name="dextrose" /></td></tr>
+          <tr><td><label>Sodium:</label></td><td><input type="number" step="any" inputmode="decimal" name="Sodium" /></td></tr>
+          <tr><td><label>Potassium:</label></td><td><input type="number" step="any" inputmode="decimal" name="Potassium" /></td></tr>
+          <tr><td><label>Calcium:</label></td><td><input type="number" step="any" inputmode="decimal" name="Calcium" /></td></tr>
+          <tr><td><label>Body Weight:</label></td><td><input type="number" step="any" inputmode="decimal" name="body_weight" /></td></tr>
+          <tr><td><label>Fluid intake:</label></td><td><input type="number" step="any" inputmode="decimal" name="Fluid_intake" /></td></tr>
+          <tr><td><label>Feeds:</label></td><td><input type="number" step="any" inputmode="decimal" name="Feeds" /></td></tr>
+          <tr><td><label>Drugs:</label></td><td><input type="number" step="any" inputmode="decimal" name="drugs" /></td></tr>
+          <tr><td><label>Other losses:</label></td><td><input type="number" step="any" inputmode="decimal" name="Other_losses_Sampling" /></td></tr>
+          <tr><td><label>Spillage losses:</label></td><td><input type="number" step="any" inputmode="decimal" name="add_as_spillage_losses" /></td></tr>
+          <tr><td><label>Wastage factor:</label></td><td><input type="number" step="any" inputmode="decimal" name="Wastage_factor" /></td></tr>
+          <tr><td><label>Lower Conc. of Dextrose:</label></td><td><input type="number" step="any" inputmode="decimal" name="Lower_Conc_of_Dextrose" /></td></tr>
+          <tr><td><label>Higher Conc. of Dextrose:</label></td><td><input type="number" step="any" inputmode="decimal" name="Higher_Conc_of_Dextrose" /></td></tr>
+          <tr><td><label>% of Aminoacids:</label></td><td><input type="number" step="any" inputmode="decimal" name="Percentage_Aminoacids" /></td></tr>
+          <tr><td><label>% of Lipids:</label></td><td><input type="number" step="any" inputmode="decimal" name="percentage_lipids" /></td></tr>
+        </table>
+      </form>
+
       </div>
+      
+      
+
 
       <div class="output-section">
         <h2>Output Section</h2>
@@ -92,103 +99,168 @@
   </div>
 
   <div id="toast" style="position: fixed; bottom: 20px; right: 20px; background-color: #4caf50; color: white; padding: 10px 20px; border-radius: 5px; display: none; z-index: 999;">
-    🔄 Calculations Updated!
-  </div>
+      🔄 Calculations Updated!
+    </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script>
-    const form = document.getElementById('calcForm');
-    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    <!-- JS + Auto-Next Logic + Print Enhancements -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+      const form = document.getElementById('calcForm');
+      const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
-    form.addEventListener('input', function () {
-      const formData = new FormData(form);
-      if (!validateForm(form)) return;
+      // Auto-calculate on input
+      form.addEventListener('input', function () {
+        if (!validateForm(form)) return;
+        const formData = new FormData(form);
+        fetch('/calculate/', {
+          method: 'POST',
+          headers: { 'X-CSRFToken': csrfToken },
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          Object.entries(data).forEach(([key, value]) => {
+            const el = document.getElementById(key);
+            if (el) el.textContent = (value !== null && value !== undefined) ? value : '---';
+          });
+          showToast();
+        })
+        .catch(err => console.error("Error:", err));
+      });
 
-      fetch('/calculate/', {
-        method: 'POST',
-        headers: { 'X-CSRFToken': csrfToken },
-        body: formData
-      })
-      .then(response => response.json())
-      .then(data => {
-        Object.entries(data).forEach(([key, value]) => {
-          const el = document.getElementById(key);
-          if (el) el.textContent = (value !== null && value !== undefined) ? value : '---';
+      // Auto tab to next input
+      const inputs = document.querySelectorAll('#calcForm input[type="number"]');
+      inputs.forEach((input, i) => {
+        input.addEventListener('keypress', e => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            const next = inputs[i + 1];
+            if (next) next.focus();
+          }
         });
-        showToast();
-      })
-      .catch(err => console.error("Error:", err));
-    });
+      });
 
-    function printResult() {
-      window.print();
-    }
-
-    async function downloadPDF() {
+      // PDF Download
+          async function downloadPDF() {
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
       doc.setFontSize(16);
       doc.text("TPN Calculator Report", 10, 15);
       doc.setFontSize(12);
-      const lines = [];
-      for (let i = 1; i <= 19; i++) {
-        const key = `result${i.toString().padStart(2, '0')}`;
-        const val = document.getElementById(key)?.textContent || "---";
-        lines.push(`${key.toUpperCase()}: ${val}`);
-      }
+
+      // Define a label map for each result
+      const labelMap = {
+        result23: "Calorie:Nitrogen Ratio",
+        result01: "Total Fluid Volume",
+        result02: "Total TPN Volume",
+        result03: "Fat Volume",
+        result04: "TPN Solution Ordered",
+        result05: "Amino Acids Volume",
+        result06: "Sodium Volume",
+        result07: "Potassium Volume",
+        result08: "Calcium Volume",
+        result09: "Magnesium Volume",
+        result10: "MVI Volume",
+        result11: "Sum of Additive Volumes",
+        result12: "Dextrose Absolute Amount",
+        result13: "Dextrose Volume",
+        result14: "Final Dextrose Concentration",
+        result15: "Dextrose % for Calc",
+        result17: "Volume of D1",
+        result16: "Volume of D2",
+        result18: "TPN Rate (ml/hr)",
+        result19: "Lipid Rate (ml/hr)",
+        result20: "Amino acid (g)",
+        result21: "Fat (g)",
+        result22: "Calorie (g)",
+      };
+
       let y = 30;
-      lines.forEach(line => {
-        doc.text(line, 10, y);
+      Object.entries(labelMap).forEach(([key, label]) => {
+        const val = document.getElementById(key)?.textContent || "---";
+        doc.text(`${label}: ${val}`, 10, y);
         y += 8;
+        if (y > 280) {
+          doc.addPage();
+          y = 20;
+        }
       });
+
       doc.save("TPN_Calculation_Report.pdf");
     }
 
-    function showToast(message = "🔄 Calculations Updated!") {
-      const toast = document.getElementById("toast");
-      toast.textContent = message;
-      toast.style.display = "block";
-      setTimeout(() => toast.style.display = "none", 2000);
-    }
 
-    function resetForm() {
-      form.reset();
-      document.querySelectorAll('.output-section div[id^="result"]').forEach(el => el.textContent = '---');
-      showToast("🧹 Form cleared");
-    }
+      // Toast Notification
+      function showToast(msg = "🔄 Calculations Updated!") {
+        const toast = document.getElementById("toast");
+        toast.textContent = msg;
+        toast.style.display = "block";
+        setTimeout(() => toast.style.display = "none", 2000);
+      }
 
-    // Inject reset button
-    const resetBtn = document.createElement("button");
-    resetBtn.innerHTML = "♻ Reset";
-    resetBtn.onclick = resetForm;
-    document.querySelector(".navbar-buttons").appendChild(resetBtn);
+      // Reset
+      function resetForm() {
+        form.reset();
+        document.querySelectorAll('.output-section div[id^="result"]').forEach(el => el.textContent = '---');
+        showToast("🧹 Form cleared");
+      }
+      const resetBtn = document.createElement("button");
+      resetBtn.innerHTML = "♻ Reset";
+      resetBtn.onclick = resetForm;
+      document.querySelector(".navbar-buttons").appendChild(resetBtn);
 
-    function validateForm(formEl) {
-      let valid = true;
-      const inputs = formEl.querySelectorAll('input[type="text"]');
-      inputs.forEach(input => {
-        const val = input.value.trim();
-        if (val !== '' && isNaN(val)) {
-          input.style.border = '2px solid red';
-          valid = false;
-        } else {
-          input.style.border = '';
+      // Light/Dark Theme Toggle
+      document.getElementById('themeToggle').addEventListener('change', function () {
+        document.body.classList.toggle('light');
+        localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+      });
+      window.addEventListener('DOMContentLoaded', () => {
+        if (localStorage.getItem('theme') === 'light') {
+          document.body.classList.add('light');
+          document.getElementById('themeToggle').checked = true;
         }
       });
-      return valid;
-    }
 
-    document.getElementById('themeToggle').addEventListener('change', function () {
-      document.body.classList.toggle('light');
-      localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
-    });
+      // Print: Convert inputs to text
+            window.addEventListener('beforeprint', () => {
+        document.querySelectorAll('#calcForm input').forEach(input => {
+          let val = input.value?.trim() || '---';
+          if (val.length > 25 || /[^\w\s.:/-]/.test(val)) {
+            val = '---';  // Hide garbage
+          }
+          const span = document.createElement('span');
+          span.textContent = val;
+          span.style.fontWeight = 'bold';
+          span.className = 'print-clone';
+          input.style.display = 'none';
+          input.parentNode.insertBefore(span, input);
+        });
+      });
 
-    window.addEventListener('DOMContentLoaded', () => {
-      if (localStorage.getItem('theme') === 'light') {
-        document.body.classList.add('light');
-        document.getElementById('themeToggle').checked = true;
+      window.addEventListener('afterprint', () => {
+        document.querySelectorAll('.print-clone').forEach(el => el.remove());
+        document.querySelectorAll('#calcForm input').forEach(input => input.style.display = '');
+      });
+
+      // Form Validator
+      function validateForm(formEl) {
+        let valid = true;
+        const inputs = formEl.querySelectorAll('input[type="number"]');
+        inputs.forEach(input => {
+          const val = input.value.trim();
+          if (val !== '' && isNaN(val)) {
+            input.style.border = '2px solid red';
+            valid = false;
+          } else {
+            input.style.border = '';
+          }
+        });
+        return valid;
       }
-    });
-  </script>
-</body>
-</html>
+
+      function printResult() {
+        window.print();
+      }
+    </script>
+  </body>
+  </html>

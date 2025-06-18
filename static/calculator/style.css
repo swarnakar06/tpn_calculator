@@ -1,4 +1,4 @@
-::root {
+:root {
   --bg-color: #000;
   --text-color: #fff;
   --panel-bg: rgba(0, 0, 0, 0.7);
@@ -22,7 +22,6 @@ body {
   transition: all 0.3s ease;
 }
 
-/* Navbar Styles */
 .navbar {
   position: fixed;
   top: 0;
@@ -49,7 +48,6 @@ body {
   flex-wrap: wrap;
 }
 
-.navbar-buttons a,
 .navbar-buttons button {
   margin-left: 8px;
   padding: 6px 10px;
@@ -58,8 +56,6 @@ body {
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  text-decoration: none;
-  color: #000;
 }
 
 .navbar-buttons input[type="checkbox"] {
@@ -79,46 +75,38 @@ body {
   margin: 3px 0;
 }
 
+.navbar-menu {
+  display: flex;
+}
+
 .navbar-toggle {
   display: none;
 }
 
-/* ---------------- MOBILE VIEW ---------------- */
-@media (max-width: 768px) {
-  .navbar {
-    flex-wrap: wrap;
+/* Mobile Nav Toggle */
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .navbar-buttons {
+      display: flex !important;
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+      width: 100%;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .hamburger {
+      display: none !important;
+    }
   }
 
-  .navbar-buttons {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 55px;
-    right: 10px;
-    background: rgba(0, 0, 0, 0.95);
-    padding: 10px;
-    border-radius: 8px;
-    z-index: 1001;
-    width: max-content;
-  }
 
-  .navbar-toggle:checked + .hamburger + .navbar-buttons {
-    display: flex;
-  }
 
-  .hamburger {
-    display: flex;
-  }
-
-  .navbar-buttons a,
-  .navbar-buttons button {
-    margin: 6px 0;
-    width: 100%;
-    text-align: left;
-  }
-}
-
-/* ---------------- HEADER INPUTS ---------------- */
 .header-inputs {
   display: flex;
   flex-wrap: wrap;
@@ -136,7 +124,6 @@ body {
   gap: 6px;
 }
 
-/* ---------------- MAIN CONTENT ---------------- */
 .main-content {
   padding: 20px;
 }
@@ -147,7 +134,7 @@ body {
   gap: 20px;
 }
 
-/* ---------------- FORM AND OUTPUT ---------------- */
+/* Form and Output Sections */
 .form-section, .output-section {
   flex: 1 1 360px;
   background-color: var(--panel-bg);
@@ -156,6 +143,7 @@ body {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Adjust layout on smaller screens */
 @media (max-width: 768px) {
   .form-section, .output-section {
     flex: 1 1 100%;
@@ -167,86 +155,145 @@ body {
   }
 }
 
-/* ---------------- HEADINGS ---------------- */
+/* Headings */
 h2 {
   font-size: 1.3rem;
   margin-bottom: 10px;
   text-align: center;
 }
 
-/* ---------------- TABLE STYLING ---------------- */
+/* Form Table */
 .form-table {
   width: 100%;
 }
 
+/* Label styling (applies to both input and output sections) */
 .form-table label {
   font-weight: bold;
   display: inline-block;
-  min-width: auto;
-  margin-right: 4px;
-  white-space: nowrap;
+  min-width: auto;       /* ✅ Remove fixed width */
+  margin-right: 4px;     /* ✅ Reduced from 6px */
+  white-space: nowrap;   /* ✅ Prevent wrapping for compact layout */
   text-align: right;
 }
 
+/* Table cells (tighten spacing) */
 .form-table td {
-  padding: 2px 4px;
+  padding: 2px 4px;      /* ✅ Reduced padding */
   vertical-align: middle;
 }
 
-/* ---------------- INPUT & OUTPUT ---------------- */
+
+/* Inputs */
 input[type="text"], input[type="number"], input[type="date"] {
-  width: 110px;
+  width: 110px;           /* ✅ Was 130px – enough for 6 decimal places */
   padding: 3px 5px;
   font-size: 13px;
 }
 
+/* Output Values */
 #resultBox,
 #potassiumBox,
 .output-section div[id^="result"] {
   font-size: 13px;
   padding: 3px 5px;
-  min-width: 110px;
+  min-width: 110px;       /* ✅ Reduced from 120px */
   display: inline-block;
 }
 
-/* ---------------- PRINT VIEW ---------------- */
-@media print {
-  @page {
-    size: A4 portrait;
-    margin: 1cm;
+
+/* Print View */
+  /* Print View */
+  @media print {
+    @page {
+      size: A4 portrait;
+      margin: 1cm;
+    }
+
+    html, body {
+      font-size: 10px;
+      background: white !important;
+      color: black !important;
+    }
+
+    .navbar, .navbar-buttons, .hamburger, #toast {
+      display: none !important;
+    }
+
+    .main-content {
+      width: 100%;
+    }
+
+    .split-container {
+      display: block !important; /* stack vertically */
+      width: 100%;
+    }
+
+    .form-section {
+      width: 100% !important;
+      display: block;
+      padding: 0;
+      margin-bottom: 15px;
+      page-break-after: always; /* force output to start on next page */
+    }
+
+    .output-section {
+      width: 100% !important;
+      display: block;
+      padding: 0;
+      margin-bottom: 15px;
+      page-break-inside: auto; /* allow breaking inside output section */
+    }
+
+    .header-inputs,
+    .form-section,
+    .output-section {
+      background: none !important;
+      box-shadow: none !important;
+      color: black !important;
+    }
+
+    .form-table {
+      width: 100%;
+      border-collapse: collapse;
+      break-inside: auto !important;
+      page-break-inside: auto !important;
+    }
+
+    .form-table tr {
+      break-inside: auto !important;
+      page-break-inside: auto !important;
+    }
+
+    .form-table td {
+      break-inside: auto;
+      page-break-inside: auto;
+      padding: 2px 4px;
+      vertical-align: top;
+    }
+
+    input, input[type="number"], input[type="date"] {
+      border: none !important;
+      background: transparent !important;
+      color: black !important;
+      font-weight: bold;
+      width: auto;
+      min-width: 50px;
+      pointer-events: none;
+    }
+
+    .output-section div[id^="result"] {
+      font-weight: bold;
+      color: black;
+      background: none;
+      white-space: nowrap;
+    }
+
+    h2, h3 {
+      margin-top: 10px;
+      margin-bottom: 6px;
+      font-size: 1.1rem;
+    }
   }
 
-  html, body {
-    width: 210mm;
-    height: 297mm;
-    font-size: 11px;
-    overflow: hidden;
-    background: white !important;
-    color: black !important;
-  }
-
-  .navbar, .navbar-buttons, .hamburger {
-    display: none !important;
-  }
-
-  .header-inputs,
-  .form-section,
-  .output-section {
-    background: none !important;
-    box-shadow: none !important;
-    color: black !important;
-    page-break-inside: avoid;
-  }
-
-  .main-content, .split-container {
-    flex-direction: row;
-    gap: 5px;
-    width: 100%;
-    padding: 0;
-  }
-
-  .form-section, .output-section {
-    width: 48% !important;
-    padding: 6px;
-  }
-}
+  
