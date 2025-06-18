@@ -1,4 +1,4 @@
-:root {
+::root {
   --bg-color: #000;
   --text-color: #fff;
   --panel-bg: rgba(0, 0, 0, 0.7);
@@ -22,6 +22,7 @@ body {
   transition: all 0.3s ease;
 }
 
+/* Navbar Styles */
 .navbar {
   position: fixed;
   top: 0;
@@ -48,6 +49,7 @@ body {
   flex-wrap: wrap;
 }
 
+.navbar-buttons a,
 .navbar-buttons button {
   margin-left: 8px;
   padding: 6px 10px;
@@ -56,6 +58,8 @@ body {
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  text-decoration: none;
+  color: #000;
 }
 
 .navbar-buttons input[type="checkbox"] {
@@ -75,17 +79,17 @@ body {
   margin: 3px 0;
 }
 
-.navbar-menu {
-  display: flex;
-}
-
 .navbar-toggle {
   display: none;
 }
 
-/* Mobile Nav Toggle */
+/* ---------------- MOBILE VIEW ---------------- */
 @media (max-width: 768px) {
-  .navbar-menu {
+  .navbar {
+    flex-wrap: wrap;
+  }
+
+  .navbar-buttons {
     display: none;
     flex-direction: column;
     position: absolute;
@@ -94,17 +98,27 @@ body {
     background: rgba(0, 0, 0, 0.95);
     padding: 10px;
     border-radius: 8px;
+    z-index: 1001;
+    width: max-content;
   }
 
-  .navbar-toggle:checked + .hamburger + .navbar-menu {
+  .navbar-toggle:checked + .hamburger + .navbar-buttons {
     display: flex;
   }
 
   .hamburger {
     display: flex;
   }
+
+  .navbar-buttons a,
+  .navbar-buttons button {
+    margin: 6px 0;
+    width: 100%;
+    text-align: left;
+  }
 }
 
+/* ---------------- HEADER INPUTS ---------------- */
 .header-inputs {
   display: flex;
   flex-wrap: wrap;
@@ -122,6 +136,7 @@ body {
   gap: 6px;
 }
 
+/* ---------------- MAIN CONTENT ---------------- */
 .main-content {
   padding: 20px;
 }
@@ -132,7 +147,7 @@ body {
   gap: 20px;
 }
 
-/* Form and Output Sections */
+/* ---------------- FORM AND OUTPUT ---------------- */
 .form-section, .output-section {
   flex: 1 1 360px;
   background-color: var(--panel-bg);
@@ -141,7 +156,6 @@ body {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Adjust layout on smaller screens */
 @media (max-width: 768px) {
   .form-section, .output-section {
     flex: 1 1 100%;
@@ -153,54 +167,49 @@ body {
   }
 }
 
-/* Headings */
+/* ---------------- HEADINGS ---------------- */
 h2 {
   font-size: 1.3rem;
   margin-bottom: 10px;
   text-align: center;
 }
 
-/* Form Table */
+/* ---------------- TABLE STYLING ---------------- */
 .form-table {
   width: 100%;
 }
 
-/* Label styling (applies to both input and output sections) */
 .form-table label {
   font-weight: bold;
   display: inline-block;
-  min-width: auto;       /* ✅ Remove fixed width */
-  margin-right: 4px;     /* ✅ Reduced from 6px */
-  white-space: nowrap;   /* ✅ Prevent wrapping for compact layout */
+  min-width: auto;
+  margin-right: 4px;
+  white-space: nowrap;
   text-align: right;
 }
 
-/* Table cells (tighten spacing) */
 .form-table td {
-  padding: 2px 4px;      /* ✅ Reduced padding */
+  padding: 2px 4px;
   vertical-align: middle;
 }
 
-
-/* Inputs */
+/* ---------------- INPUT & OUTPUT ---------------- */
 input[type="text"], input[type="number"], input[type="date"] {
-  width: 110px;           /* ✅ Was 130px – enough for 6 decimal places */
+  width: 110px;
   padding: 3px 5px;
   font-size: 13px;
 }
 
-/* Output Values */
 #resultBox,
 #potassiumBox,
 .output-section div[id^="result"] {
   font-size: 13px;
   padding: 3px 5px;
-  min-width: 110px;       /* ✅ Reduced from 120px */
+  min-width: 110px;
   display: inline-block;
 }
 
-
-/* Print View */
+/* ---------------- PRINT VIEW ---------------- */
 @media print {
   @page {
     size: A4 portrait;
