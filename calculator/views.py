@@ -51,8 +51,8 @@ def calculate_ratio(request):
                 outputs['result03'] = round(F * C * 100 / E, 4)
 
             # Output 4: TPN Solution Volume Ordered
-            if all(x is not None for x in [C, J, K, L, M, F, E]) and E != 0:
-                result04 = ((C * J) - K - L + M) - (F * C * 100 / E)
+            if 'result02' in outputs and 'result03' in outputs:
+                result04 = round(outputs['result02'] - outputs['result03'] - 1.35, 4)
                 outputs['result04'] = round(result04, 4)
 
             # Output 5: Amino Acids Volume
@@ -80,7 +80,7 @@ def calculate_ratio(request):
                 outputs['result10'] = round(1.5 * C * O, 4)
 
             # Output 11: Sum of Additive Volumes
-            required_keys = ['result05', 'result06', 'result07', 'result08', 'result09', 'result10']
+            required_keys = ['result03','result05', 'result06', 'result07', 'result08', 'result09', 'result10']
             if all(k in outputs for k in required_keys):
                 outputs['result11'] = round(sum(outputs[k] for k in required_keys), 4)
 
@@ -89,8 +89,8 @@ def calculate_ratio(request):
                 outputs['result12'] = round(B * C * 1.44 * O, 4)
 
             # Output 13: Dextrose Volume
-            if 'result04' in outputs and O is not None and 'result11' in outputs:
-                outputs['result13'] = round(outputs['result04'] * O - outputs['result11'], 4)
+            if 'result02' in outputs and O is not None and 'result11' in outputs:
+                outputs['result13'] = round((outputs['result02'] * O )- outputs['result11'], 4)
 
             # Output 14: Final Dextrose Concentration
             if 'result12' in outputs and 'result04' in outputs and outputs['result04'] != 0 and N is not None:
