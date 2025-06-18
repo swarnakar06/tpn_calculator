@@ -29,7 +29,7 @@
 
   <div class="header-inputs">
     <div><label>Name:</label><input type="text" name="user_name" /></div>
-    <div><label>ID:</label><input type="text" name="user_id" /></div>
+    <div><label>Day of life:</label><input type="text" name="user_id" /></div>
     <div><label>Date:</label><input type="date" name="date" /></div>
     <div><label>Date of Birth:</label><input type="date" name="dob" /></div>
   </div>
@@ -41,22 +41,22 @@
         <form id="calcForm">
         {% csrf_token %}
         <table class="form-table">
+          <tr><td><label>Body Weight:</label></td><td><input type="number" step="any" inputmode="decimal" name="body_weight" /></td></tr>
+          <tr><td><label>Fluid intake:</label></td><td><input type="number" step="any" inputmode="decimal" name="Fluid_intake" /></td></tr>
+          <tr><td><label>Feeds:</label></td><td><input type="number" step="any" inputmode="decimal" name="Feeds" /></td></tr>
+          <tr><td><label>Drugs:</label></td><td><input type="number" step="any" inputmode="decimal" name="drugs" /></td></tr>
+          <tr><td><label>Other losses(sampling):</label></td><td><input type="number" step="any" inputmode="decimal" name="Other_losses_Sampling" /></td></tr>
           <tr><td><label>Amino Acids:</label></td><td><input type="number" step="any" inputmode="decimal" name="amino_acids" /></td></tr>
           <tr><td><label>Lipids:</label></td><td><input type="number" step="any" inputmode="decimal" name="Lipids" /></td></tr>
           <tr><td><label>Dextrose:</label></td><td><input type="number" step="any" inputmode="decimal" name="dextrose" /></td></tr>
           <tr><td><label>Sodium:</label></td><td><input type="number" step="any" inputmode="decimal" name="Sodium" /></td></tr>
           <tr><td><label>Potassium:</label></td><td><input type="number" step="any" inputmode="decimal" name="Potassium" /></td></tr>
           <tr><td><label>Calcium:</label></td><td><input type="number" step="any" inputmode="decimal" name="Calcium" /></td></tr>
-          <tr><td><label>Body Weight:</label></td><td><input type="number" step="any" inputmode="decimal" name="body_weight" /></td></tr>
-          <tr><td><label>Fluid intake:</label></td><td><input type="number" step="any" inputmode="decimal" name="Fluid_intake" /></td></tr>
-          <tr><td><label>Feeds:</label></td><td><input type="number" step="any" inputmode="decimal" name="Feeds" /></td></tr>
-          <tr><td><label>Drugs:</label></td><td><input type="number" step="any" inputmode="decimal" name="drugs" /></td></tr>
-          <tr><td><label>Other losses:</label></td><td><input type="number" step="any" inputmode="decimal" name="Other_losses_Sampling" /></td></tr>
           <tr><td><label>Spillage losses:</label></td><td><input type="number" step="any" inputmode="decimal" name="add_as_spillage_losses" /></td></tr>
           <tr><td><label>Wastage factor:</label></td><td><input type="number" step="any" inputmode="decimal" name="Wastage_factor" /></td></tr>
-          <tr><td><label>Lower Conc. of Dextrose:</label></td><td><input type="number" step="any" inputmode="decimal" name="Lower_Conc_of_Dextrose" /></td></tr>
-          <tr><td><label>Higher Conc. of Dextrose:</label></td><td><input type="number" step="any" inputmode="decimal" name="Higher_Conc_of_Dextrose" /></td></tr>
-          <tr><td><label>% of Aminoacids:</label></td><td><input type="number" step="any" inputmode="decimal" name="Percentage_Aminoacids" /></td></tr>
+          <tr><td><label>Lower Conc. of Dextrose %age:</label></td><td><input type="number" step="any" inputmode="decimal" name="Lower_Conc_of_Dextrose" /></td></tr>
+          <tr><td><label>Higher Conc. of Dextrose %age%:</label></td><td><input type="number" step="any" inputmode="decimal" name="Higher_Conc_of_Dextrose" /></td></tr>
+          <tr><td><label>% of Amino acids:</label></td><td><input type="number" step="any" inputmode="decimal" name="Percentage_Aminoacids" /></td></tr>
           <tr><td><label>% of Lipids:</label></td><td><input type="number" step="any" inputmode="decimal" name="percentage_lipids" /></td></tr>
         </table>
       </form>
@@ -69,11 +69,10 @@
       <div class="output-section">
         <h2>Output Section</h2>
         <table class="form-table">
-            <tr><td><label>Calorie:Nitrogen Ratio:</label></td><td><div id="result23">---</div></td></tr>
             <tr><td><label>Total Fluid Volume:</label></td><td><div id="result01">---</div></td></tr>
             <tr><td><label>Total TPN Volume:</label></td><td><div id="result02">---</div></td></tr>
             <tr><td><label>Fat Volume:</label></td><td><div id="result03">---</div></td></tr>
-            <tr><td><label>TPN Solution Ordered:</label></td><td><div id="result04">---</div></td></tr>
+            <tr><td><label>TPN Solution Volume Ordered:</label></td><td><div id="result04">---</div></td></tr>
             <tr><td><label>Amino Acids Volume:</label></td><td><div id="result05">---</div></td></tr>
             <tr><td><label>Sodium Volume:</label></td><td><div id="result06">---</div></td></tr>
             <tr><td><label>Potassium Volume:</label></td><td><div id="result07">---</div></td></tr>
@@ -84,7 +83,7 @@
             <tr><td><label>Dextrose Absolute Amount:</label></td><td><div id="result12">---</div></td></tr>
             <tr><td><label>Dextrose Volume:</label></td><td><div id="result13">---</div></td></tr>
             <tr><td><label>Final Dextrose Concentration:</label></td><td><div id="result14">---</div></td></tr>
-            <tr><td><label>Dextrose % for Calc:</label></td><td><div id="result15">---</div></td></tr>
+            <tr><td><label>Dextrose Concentration for Calc:</label></td><td><div id="result15">---</div></td></tr>
             <tr><td><label>Volume of D1:</label></td><td><div id="result17">---</div></td></tr>
             <tr><td><label>Volume of D2:</label></td><td><div id="result16">---</div></td></tr>
             <tr><td><label>TPN Rate (ml/hr):</label></td><td><div id="result18">---</div></td></tr>
@@ -92,6 +91,7 @@
             <tr><td><label>Amino acid(in gram):</label></td><td><div id="result20">---</div></td></tr>
             <tr><td><label>Fat (in gram):</label></td><td><div id="result21">---</div></td></tr>
             <tr><td><label>Calorie (in gram):</label></td><td><div id="result22">---</div></td></tr>
+            <tr><td><label>Calorie:Nitrogen Ratio:</label></td><td><div id="result23">---</div></td></tr>
         </table>
      </div>
 
